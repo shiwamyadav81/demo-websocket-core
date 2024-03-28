@@ -148,13 +148,6 @@ class Member
             $loginPassword = 0;
         }
         if ($loginPassword == 1) {
-            $username = $memberRecord[0]["username"];
-            echo "<script type='text/javascript'>
-                    var conn = new WebSocket('ws://localhost:8080');
-                    conn.onopen = function() {
-                        conn.send('$username');
-                    };
-                </script>";
             // login sucess so store the member's username in
             // the session
             session_start();

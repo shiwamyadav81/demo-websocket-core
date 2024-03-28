@@ -3,6 +3,13 @@ session_start();
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
     session_write_close();
+
+    echo "<script type='text/javascript'>
+        setTimeout(function() {
+        showNotification('$username');
+        showToast('jooooo');
+    }, 1000);
+    </script>";
 } else {
     // since the username is not set in session, the user is not-logged-in
     // he is trying to access this page unauthorized
