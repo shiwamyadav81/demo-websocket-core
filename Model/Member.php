@@ -13,12 +13,7 @@ class Member
         $this->ds = new DataSource();
     }
 
-    /**
-     * to check if the username already exists
-     *
-     * @param string $username
-     * @return boolean
-     */
+
     public function isUsernameExists($username)
     {
         $query = 'SELECT * FROM tbl_member where username = ?';
@@ -39,12 +34,7 @@ class Member
         return $result;
     }
 
-    /**
-     * to check if the email already exists
-     *
-     * @param string $email
-     * @return boolean
-     */
+
     public function isEmailExists($email)
     {
         $query = 'SELECT * FROM tbl_member where email = ?';
@@ -65,11 +55,7 @@ class Member
         return $result;
     }
 
-    /**
-     * to signup / register a user
-     *
-     * @return string[] registration status message
-     */
+
     public function registerMember()
     {
         // Sanitize user input
