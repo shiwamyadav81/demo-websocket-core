@@ -92,11 +92,10 @@ class Member
 
                 // If insertion successful, send WebSocket message
                 if (!empty($memberId)) {
-                    $message = "New User Just Registered " . ' - ' . $username;
                     echo "<script type='text/javascript'>
                     var conn = new WebSocket('ws://localhost:8080');
                     conn.onopen = function() {
-                        conn.send('$message');
+                        conn.send('$username');
                     };
                 </script>";
 
