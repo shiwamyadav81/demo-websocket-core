@@ -8,12 +8,13 @@ if (!empty($_POST["signup-btn"])) {
 	$registrationResponse = $member->registerMember();
 }
 ?>
-<HTML>
+<!DOCTYPE HTML>
 
 <HEAD>
 	<TITLE>User Registration</TITLE>
 	<link href="assets/css/style.css" type="text/css" rel="stylesheet" />
 	<link href="assets/css/user-registration.css" type="text/css" rel="stylesheet" />
+	<link rel="icon" type="image/x-icon" href="assets/images/user-logo.png">
 	<script src="assets/jquery/jquery-3.3.1.js" type="text/javascript"></script>
 </HEAD>
 
@@ -144,4 +145,4 @@ if (!empty($_POST["signup-btn"])) {
 	</script>
 </BODY>
 
-</HTML>
+</html>

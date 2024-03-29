@@ -8,12 +8,13 @@ if (!empty($_POST["login-btn"])) {
 	$loginResult = $member->loginMember();
 }
 ?>
-<HTML>
+<!DOCTYPE HTML>
 
 <HEAD>
 	<TITLE>Login</TITLE>
 	<link href="assets/css/style.css" type="text/css" rel="stylesheet" />
 	<link href="assets/css/user-registration.css" type="text/css" rel="stylesheet" />
+	<link rel="icon" type="image/x-icon" href="assets/images/user-logo.png">
 	<script src="assets/jquery/jquery-3.3.1.js" type="text/javascript"></script>
 </HEAD>
 
@@ -83,4 +84,4 @@ if (!empty($_POST["login-btn"])) {
 	</script>
 </BODY>
 
-</HTML>
+</html>
