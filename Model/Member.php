@@ -92,11 +92,10 @@ class Member
 
                 // If insertion successful, send WebSocket message
                 if (!empty($memberId)) {
-                    $message = "New User Just Registered " . ' - ' . $username;
                     echo "<script type='text/javascript'>
                     var conn = new WebSocket('ws://localhost:8080');
                     conn.onopen = function() {
-                        conn.send('$message');
+                        conn.send('$username');
                     };
                 </script>";
 
@@ -149,13 +148,20 @@ class Member
             $loginPassword = 0;
         }
         if ($loginPassword == 1) {
+            $username = $memberRecord[0]["username"];
+            echo "<script type='text/javascript'>
+                    var conn = new WebSocket('ws://localhost:8080');
+                    conn.onopen = function() {
+                        conn.send('$username');
+                        window.location.href = './home.php';
+                    };
+                </script>";
+
             // login sucess so store the member's username in
             // the session
             session_start();
             $_SESSION["username"] = $memberRecord[0]["username"];
             session_write_close();
-            $url = "./home.php";
-            header("Location: $url");
         } else if ($loginPassword == 0) {
             $loginStatus = "Invalid username or password.";
             return $loginStatus;

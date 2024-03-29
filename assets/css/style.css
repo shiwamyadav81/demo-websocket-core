@@ -1,28 +1,10 @@
-.notification-section-container {
+.toaster {
 	position: fixed;
-	bottom: 20px;
+	top: 400px;
 	left: 50%;
 	transform: translateX(-50%);
-	background-color: #ffcc00;
-	border: 2px solid #ff9900;
-	border-radius: 8px;
-	padding: 10px 20px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-	display: block;
-	text-align: center;
-	margin-top: 100px;
-}
-
-.notification-content {
-	font-size: 16px;
-	color: #333333;
-}
-
-.notification-content span {
-	display: block;
-	margin-bottom: 5px;
-	color: #ff3333;
-	/* New username color */
+	z-index: 9999;
+	max-width: 600px;
 }
 
 @keyframes slideIn {

@@ -6,13 +6,12 @@ if (isset($_SESSION["username"])) {
 } else {
     // since the username is not set in session, the user is not-logged-in
     // he is trying to access this page unauthorized
-    // so let's clear all session variables and redirect him to index
+
     session_unset();
     session_write_close();
     $url = "./index.php";
     header("Location: $url");
 }
-
 ?>
 <HTML>
 
@@ -21,21 +20,24 @@ if (isset($_SESSION["username"])) {
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
     <link href="assets/css/user-registration.css" type="text/css" rel="stylesheet" />
     <script src="assets/jquery/jquery-3.3.1.js" type="text/javascript"></script>
-
+    <script src="https://cdn.tailwindcss.com"></script>
 </HEAD>
 
 <BODY>
-    <div class="container">
+    <div class="container mt-8">
         <div class="page-header">
-            <span class="login-signup"><a href="logout.php">Logout</a></span>
+            <span class="login-signup"><a href="logout.php"> <button class="border-solid border-2 !border-red-500 !text-red-500 !bg-white !px-4"> Logout </button></a></span>
         </div>
-        <div class="page-content">Welcome <?php echo $username; ?></div>
+        <div class="page-content font-medium text-3xl">Welcome <span class="font-bold underline text-green-600"> <?php echo $username; ?></span></div>
     </div>
-    <hr>
-    <div class="notification-section-container" style="text-align: center;">
-        <div class="notification-content">
-            <span id="new-user"></span>
+    <div class="container bg-white shadow-lg rounded-lg overflow-hidden" id="new-user">
+        <div class="px-4 py-4 bg-gray-100">
+            <h2 class="text-xl font-semibold text-gray-800">Notification List of Users Getting Registered</h2>
         </div>
+    </div>
+
+    <div id="toaster" class="toaster hidden bg-green-500 text-white py-2 px-4 rounded-md shadow-lg">
+        <span id="toasterMessage"></span>
     </div>
 
     <script>
@@ -43,24 +45,31 @@ if (isset($_SESSION["username"])) {
         conn.onopen = function(e) {
             console.log("Connection established!");
         };
-
         conn.onmessage = function(e) {
             console.log(e.data);
             showNotification(e.data);
+            showToast(e.data);
         };
 
-
-
         function showNotification(username) {
-            alert(username);
+            // alert(username);
             var newUserNotification = $('#new-user');
-            var usernameSpan = $('<h4>').text(username);
+            var usernameSpan = `<div class="p-4">
+                                <div class="flex items-center py-2">
+                                    <img class="h-8 w-8 mr-2" src="assets/images/user-logo.png" alt="User avatar">
+                                    <p class="text-cyan-600 font-bold"> ${username} </p>
+                                </div>
+                                <hr class="border-gray-300">
+                                </div>`;
             newUserNotification.append(usernameSpan);
+        }
 
-            var notificationSection = $('.notification-section');
-
-            // Add row styling
-            newUserNotification.addClass('row-style');
+        function showToast(message) {
+            $('#toasterMessage').text('New User Registered: ' + message);
+            $('#toaster').removeClass('hidden').fadeIn();
+            setTimeout(function() {
+                $('#toaster').fadeOut();
+            }, 10000);
         }
     </script>
 
